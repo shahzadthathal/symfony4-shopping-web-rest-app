@@ -2,17 +2,11 @@
 
 ## Quick Start
 
-
 ```
 git clone https://github.com/shahzadthathal/symfony4-shopping-web-rest-app.git
-```
-```
 cd symfony4-shopping-web-rest-app
-```
-```
 composer install
 ```
-
 Create a database ```sf4_db``` and username ```sf4_user```, password ```sf4_pass```
 
 #If .env not exist in project root folder then copy .env.dist to .env and update this connection url(DATABASE_URL)
@@ -27,12 +21,10 @@ php bin/console make:migration
 ```
 php bin/console doctrine:migrations:migrate
 ```
-
 #Add some dummy products using fixtures.
 ```
 php bin/console doctrine:fixtures:load --purge-with-truncate
 ```
-
 If .htaccess file is missing then make a .htaccess file in public/ folder and puth this content
 ```
 <IfModule mod_rewrite.c>
@@ -69,7 +61,6 @@ http://localhost/symfony4-shopping-web-rest-app/public/
 
 #API Endpoints
 I used ARC(Advance REST client) chrome extension for testing api endpoints. Postman is also good.
-
 Register new user
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/register
@@ -79,7 +70,6 @@ POST http://localhost/symfony4-shopping-web-rest-app/public/api/register
   "fullName":"John Smith"
 }
 ```
-
 Login to get token and that token could be used to access other api endpoints i.e order summary, save order.
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/login
@@ -93,25 +83,18 @@ Response
 "apikey": "6e847cd99e8a1e915001-1558878749"
 }
 ```
-
-
 Get Product list, There are two ways to append apikey, 1 Query string and 2 set 'X-AUTH-TOKEN' in request header
-
 ```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/products?apikey=xyz-token
-
 OR
-
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/products?apikey=xyz-token
 Header name=X-AUTH-TOKEN
 Header value= dbe7a82479ae4aea7f44-1558876797
-
 ```
 Also can pass ```page``` parameter into query string
 ```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/products?page=2&limit=3
 ```
-
 Customer order summary, make sure product ids exist in database :)
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/customer/orders/summary?apikey=xyz-token
@@ -124,7 +107,6 @@ Content-Type: application/json
   }
 }
 ```
-
 Customer order save
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/customer/orders/save?apikey=xyz-token
@@ -145,20 +127,15 @@ Content-Type: application/json
   }
 }
 ```
-
 Get single order
 ```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/customer/orders/single/1?apikey=xyz-token
 ```
-
 Get customer orders list
 ```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/customer/orders?apikey=xyz-token
 ```
-
-
-Some secure api's for admin user only.
-
+Some secure endpoints for admin user only.
 Add product
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/products
@@ -178,7 +155,6 @@ Content-Type: application/json
 "description": null
 }
 ```
-
 Update product
 ```
 PUT http://localhost/symfony4-shopping-web-rest-app/public/api/products/19
@@ -198,24 +174,19 @@ Content-Type: application/json
 "description": null
 }
 ````
-
 Show single product
-````
+```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/products/19
 ```
-
 Delete product
 ```
 DELETE http://localhost/symfony4-shopping-web-rest-app/public/api/products/19
 ```
-
 Get those products which are not bundles so these can be display in dropdown for multi select when creating bundle
 ```
 Get http://localhost/symfony4-shopping-web-rest-app/public/api/products-not-bundles
 ```
-
 Add product bundle
-
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/product-bundles
 Content-Type: application/json
@@ -235,9 +206,7 @@ Content-Type: application/json
 "productsArr":{"0":23,"1":12}
 }
 ```
-
 Update product bundle
-
 ```
 PUT http://localhost/symfony4-shopping-web-rest-app/public/api/product-bundles/25
 Content-Type: application/json
@@ -256,22 +225,18 @@ Content-Type: application/json
 "description": "Awesome description",
 "productsArr":{"0":3,"1":4}
 }
-````
-
+```
 Get product bundle
 ```
 http://localhost/symfony4-shopping-web-rest-app/public/api/product-bundles/25
 ```
-
 Delete product bundle
 ```
 http://localhost/symfony4-shopping-web-rest-app/public/api/product-bundles/25
 ```
-
 How to test? 
 Run this command from project root folder.
 Note, if you get error ```Failed asserting that 403 matches expected 200.``` update HTTP_X-AUTH-TOKEN with apikey in all tests/Controllers , you can get this apikey from user table ```api_token```
-
 ```  
  ./bin/phpunit
 ```
