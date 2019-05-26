@@ -1,0 +1,11 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block body %}
+    <h1>Create new product bundle</h1>
+
+    {{ include('admin/product-bundle/_form.html.twig') }}
+
+    <a href="{{ path('product_index') }}">back to list</a>
+{% endblock %}

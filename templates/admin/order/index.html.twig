@@ -1,0 +1,44 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Order index{% endblock %}
+
+{% block body %}
+    <h1>Order index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>OrderNumber</th>
+                <th>TotalAmount</th>
+                <th>Status</th>
+                <th>Receiver Name</th>
+                <th>Email</th>
+                <th>ContactNumber</th>
+                <th>CreatedAt</th>
+                <th>Sctions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.orderNumber }}</td>
+                <td>{{ order.totalAmount }}€</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.fullName }}</td>
+                <td>{{ order.email }}</td>
+                <td>{{ order.contactNumber }}</td>
+                <td>{{ order.createdAt ? order.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-sm btn-dark" href="{{ path('order_show', {'id': order.id}) }}">show</a>
+                    <a class="btn btn-sm btn-dark mt-1" href="{{ path('order_edit', {'id': order.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="23">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

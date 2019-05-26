@@ -1,0 +1,54 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Product listing{% endblock %}
+
+{% block body %}
+    <h1>Product listing</h1>
+
+     <a class="btn btn-dark" href="{{ path('product_new') }}">Add new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Is Product Bundle</th>
+                <th>Status</th>
+                <th>Created At</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.price }}{{ product.currency }}</td>
+                <td>{{ product.isProductBundle }}</td>
+                <td>{{ product.status }}</td>
+
+                 <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+
+                <td>
+                    {% if product.imageType == 'Link' %}
+                        <img src="{{ product.image }}" width="100" height="70">
+                    {% else %}
+                        <img src="{{ path('app_homepage') }}/public/uploads/{{ product.image }}" width="100" height="70">
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-dark" href="{{ path('product_show', {'id': product.id}) }}">show</a>
+                    <a class="btn btn-sm btn-dark mt-1" href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

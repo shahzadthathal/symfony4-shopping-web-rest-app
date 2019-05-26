@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+	
+	<div class="form-group">
+    <label for="exampleFormControlSelect2">Multiple select products</label>
+	    <select name="productsArr[]" multiple class="form-control" required="required" style="height: 250px">
+	    	{% for item in productsArr%}
+
+	      		<option value="{{item.id}}" {% if item.id in productBundlesArr %} selected="selected" {% endif %}>{{item.title}} ({{item.price}}{{item.currency}})</option>
+
+	      	{% endfor %}
+	    </select>
+	</div>
+
+    {{ form_widget(form) }}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}

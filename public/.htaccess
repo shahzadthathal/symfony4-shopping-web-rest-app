@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteRule ^index\.php(/(.*)|$) %{CONTEXT_PREFIX}/$2 [R=301,L]
+    
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule .? - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^cpv-\d+\/(.+)$ $1 [L]
+
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^(.*)$ index.php [QSA,L]
+    
+    RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::\2$
+    RewriteRule ^(.*) - [E=BASE:%1]
+    RewriteRule .? %{ENV:BASE}index.php [L]
+
+</IfModule>
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        # When mod_rewrite is not available 
+        RedirectMatch 302 ^/$ /index.php/
+    </IfModule>
+</IfModule>

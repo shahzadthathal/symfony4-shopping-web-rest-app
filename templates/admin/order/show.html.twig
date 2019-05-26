@@ -1,0 +1,77 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Order detail{% endblock %}
+
+{% block body %}
+    <h1>Order detail</h1>
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">General</h5>
+          </div>
+          <li class="list-group-item">Order id: <span class="badge badge-secondary">{{order.id}}</span></li>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Order number: <span class="badge badge-secondary">{{order.orderNumber}}</span></li>
+             <li class="list-group-item">Total items: <span class="badge badge-secondary">{{ order.totalItems }}</span></li>
+            <li class="list-group-item">Total amount: <span class="badge badge-secondary">{{ order.totalAmount }}€</span></li>
+            <li class="list-group-item">Shipping charges: <span class="badge badge-secondary">{{ order.shippingCost }}€</span></li>
+            <li class="list-group-item">Payment method: <span class="badge badge-secondary">{{order.paymentMethod}}</span></li>
+            <li class="list-group-item">Delivery status: <span class="badge badge-secondary">{{order.status}}</span></li>
+            <li class="list-group-item">Shipping method: <span class="badge badge-secondary">{{order.shippingMethod}}</span></li>
+            <li class="list-group-item">Created at: <span class="badge badge-secondary">{{ order.createdAt ? order.createdAt|date('Y-m-d H:i:s') : '' }}</span></li>
+            <li class="list-group-item">Updated at: <span class="badge badge-secondary">{{ order.updatedAt ? order.updatedAt|date('Y-m-d H:i:s') : '' }}</span></li>
+            <li class="list-group-item">Admin notes: {{ order.adminNotes }}</li>
+          </ul>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Order receiver</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name: {{ order.fullName }}</li>
+                 <li class="list-group-item">Email: {{ order.email }}</li>
+                <li class="list-group-item">Contact number: {{ order.contactNumber }}</li>
+                <li class="list-group-item">Postal code: {{order.postalCode}}</li>
+                <li class="list-group-item">Shipping address: {{order.shippingAddress}}, {{order.city}}, {{order.country}}</li>
+                 <li class="list-group-item">Customer city: {{ order.city }}</li>
+                  <li class="list-group-item">Customer country: {{ order.country }}</li>           
+                <li class="list-group-item">IP address: {{ order.ipAddress }}</li>
+                 <li class="list-group-item">Customer notes: {{ order.customerNotes }}</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in orderItems %}
+            <tr>
+                <td>{{ item['id'] }}</td>
+                <td>{{ item['title'] }}</td>
+                <td>{{ item['quantity'] }}</td>
+                <td>{{ item['unitPrice'] }}€</td>
+                <td>{{ item['totalPrice'] }}€</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('order_index') }}">back to list</a>
+
+    <a href="{{ path('order_edit', {'id': order.id}) }}">edit</a>
+
+{% endblock %}

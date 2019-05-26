@@ -1,0 +1,13 @@
+{% extends '/admin/admin-base.html.twig' %}
+
+{% block title %}Edit product bundle{% endblock %}
+
+{% block body %}
+    <h1>Edit product bundle</h1>
+
+    {{ include('/admin/product-bundle/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('product_index') }}">back to list</a>
+
+    {{ include('/admin/product-bundle/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Product bundle{% endblock %}
+
+{% block body %}
+    <h1>Product bundle</h1>
+
+    <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price: {{product.price}}{{product.currency}}</li>
+          </ul>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Products in this bundle</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for item in bunleItems%}
+                <li class="list-group-item">({{item.id}}) {{item.title}} <span class="badge badge-secondary">{{item.price}}{{item.currency}}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<h2>Complete product detail</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ product.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ product.slug }}</td>
+            </tr>
+            <tr>
+                <th>Is Discount?</th>
+                <td>{{ product.isDiscount }}</td>
+            </tr>
+            <tr>
+                <th>Discount Type</th>
+                <td>{{ product.discountType }}</td>
+            </tr>
+            <tr>
+                <th>Discount</th>
+                <td>{{ product.discount }}</td>
+            </tr>
+            <tr>
+                <th>Is Product Bundle</th>
+                <td>{{ product.isProductBundle }}</td>
+            </tr>
+            <tr>
+                <th>Sku</th>
+                <td>{{ product.sku }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ product.status }}</td>
+            </tr>
+            <tr>
+                <th>Image Type</th>
+                <td>{{ product.imageType }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                {% if product.imageType == 'Link' %}
+                        <img src="{{ product.image }}" width="300" height="250">
+                    {% else %}
+                        <img src="{{ path('app_homepage') }}/public/uploads/{{ product.image }}" width="300" height="250">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ product.description|raw }}</td>
+            </tr>
+            <tr>
+                <th>Created At</th>
+                <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated At</th>
+                <td>{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('product_bundle_index') }}">back to list</a>
+
+    <a href="{{ path('product_bundle_edit', {'id': product.id}) }}">edit</a>
+
+    {{ include('/admin/product-bundle/_delete_form.html.twig') }}
+{% endblock %}
