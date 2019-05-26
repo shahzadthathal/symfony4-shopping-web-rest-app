@@ -1,13 +1,13 @@
-# Smyfony 4 with docker and Rest + Web 2019
+# Smyfony 4 REST + Web 2019
 
 ## Quick Start
 
 
 ```
-git clone https://github.com/shahzadthathal/symfony4-shopping-web-rest-app
+git clone https://github.com/shahzadthathal/symfony4-shopping-web-rest-app.git
 ```
 ```
-cd symfony4-tech-test/
+cd symfony4-shopping-web-rest-app
 ```
 ```
 composer install
@@ -15,7 +15,7 @@ composer install
 
 Create a database ```sf4_db``` and username ```sf4_user```, password ```sf4_pass```
 
-#Copy .env.dist to .env and update this connection url(DATABASE_URL)
+#If .env not exist in project root folder then copy .env.dist to .env and update this connection url(DATABASE_URL)
 ```
 DATABASE_URL=mysql://sf4_user:sf4_pass@127.0.0.1:3306/sf4_db
 ```
@@ -28,12 +28,12 @@ php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 ```
 
-#Add some dummy products
+#Add some dummy products using fixtures.
 ```
 php bin/console doctrine:fixtures:load --purge-with-truncate
 ```
 
-IF .htaccess file is missing then make an .htaccess file in public/ folder and puth this content
+IF .htaccess file is missing then make a .htaccess file in public/ folder and puth this content
 ```
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -62,8 +62,13 @@ IF .htaccess file is missing then make an .htaccess file in public/ folder and p
     </IfModule>
 </IfModule>
 ```
+#Open home page
+```
+http://localhost/symfony4-shopping-web-rest-app/public/
+```
 
 #API Endpoints
+I used ARC(Advance REST client) chrome extension for testing api endpoints. Postman is also good.
 
 Register new user
 ```
@@ -265,7 +270,8 @@ http://localhost/symfony4-shopping-web-rest-app/public/api/product-bundles/25
 
 How to test? 
 Run this command from project root folder.
-Note, please update apikey in all tests/Controllers if you get error ```Failed asserting that 403 matches expected 200.``
+Note, if you get error ```Failed asserting that 403 matches expected 200.``` update HTTP_X-AUTH-TOKEN with apikey in all tests/Controllers , you can get this apikey from user table ```api_token```
+
 ```  
  ./bin/phpunit
 ```
