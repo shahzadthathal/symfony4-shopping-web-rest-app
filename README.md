@@ -33,7 +33,7 @@ php bin/console doctrine:migrations:migrate
 php bin/console doctrine:fixtures:load --purge-with-truncate
 ```
 
-IF .htaccess file is missing then make a .htaccess file in public/ folder and puth this content
+If .htaccess file is missing then make a .htaccess file in public/ folder and puth this content
 ```
 <IfModule mod_rewrite.c>
     RewriteEngine On
