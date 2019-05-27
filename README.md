@@ -25,7 +25,7 @@ Add some dummy products using fixtures.
 ```
 php bin/console doctrine:fixtures:load --purge-with-truncate
 ```
-If .htaccess file is missing then make a .htaccess file in public/ folder and puth this content
+If .htaccess file is missing then make a .htaccess file in public/ folder and put this content
 ```
 <IfModule mod_rewrite.c>
     RewriteEngine On
