@@ -95,11 +95,11 @@ Get Product list, There are two ways to append apikey, 1 Query string and 2 set 
 ```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/products?apikey=xyz-token
 OR
-GET http://localhost/symfony4-shopping-web-rest-app/public/api/products?apikey=xyz-token
+GET http://localhost/symfony4-shopping-web-rest-app/public/api/products
 Header name=X-AUTH-TOKEN
 Header value= dbe7a82479ae4aea7f44-1558876797
 ```
-Also can pass ```page``` parameter into query string
+Also can pass ```page``` and ```limit``` parameters into query string
 ```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/products?page=2&limit=3
 ```
@@ -143,7 +143,7 @@ Get customer orders list
 ```
 GET http://localhost/symfony4-shopping-web-rest-app/public/api/customer/orders?apikey=xyz-token
 ```
-Some secure endpoints for admin user only.
+Some secure endpoints for admin user only. Admin apitoken will be mandatory because only Admin can perform these actions.
 Add product
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/products
