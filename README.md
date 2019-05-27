@@ -59,6 +59,14 @@ If .htaccess file is missing then make a .htaccess file in public/ folder and pu
 http://localhost/symfony4-shopping-web-rest-app/public/
 ```
 
+Access Admin Panel
+```
+http://localhost/symfony4-shopping-web-rest-app/public/admin/product/list
+Admin login detail
+admin@app.com
+123456
+```
+
 #API Endpoints
 I used ARC(Advance REST client) chrome extension for testing api endpoints. Postman is also good.
 Register new user
