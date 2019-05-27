@@ -7,13 +7,13 @@ git clone https://github.com/shahzadthathal/symfony4-shopping-web-rest-app.git
 cd symfony4-shopping-web-rest-app
 composer install
 ```
-Create a database ```sf4_db``` and username ```sf4_user```, password ```sf4_pass```
+##Create a database ```sf4_db``` and username ```sf4_user```, password ```sf4_pass```
 
-###If .env not exist in project root folder then copy .env.dist to .env and update this connection url(DATABASE_URL)
+##If .env not exist in project root folder then copy .env.dist to .env and update this connection url(DATABASE_URL)
 ```
 DATABASE_URL=mysql://sf4_user:sf4_pass@127.0.0.1:3306/sf4_db
 ```
-###Make migrations
+##Make migrations
 ```
 php bin/console make:migration
 ```
