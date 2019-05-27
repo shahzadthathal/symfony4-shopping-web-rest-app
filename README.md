@@ -65,16 +65,16 @@ Register new user
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/register
 {
-  "email":"john@app.com",
+  "email":"demo@app.com",
   "plainPassword":"123456",
-  "fullName":"John Smith"
+  "fullName":"Demo User"
 }
 ```
 Login to get token and that token could be used to access other api endpoints i.e order summary, save order.
 ```
 POST http://localhost/symfony4-shopping-web-rest-app/public/api/login
 {
-  "email":"john@app.com",
+  "email":"demo@app.com",
   "assword":"123456"
 }
 
