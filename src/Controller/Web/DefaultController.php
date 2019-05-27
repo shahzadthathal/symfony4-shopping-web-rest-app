@@ -8,6 +8,8 @@ namespace App\Controller\Web;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Service\ProductService;
+
 class DefaultController extends AbstractController
 {
     // ...
@@ -17,8 +19,11 @@ class DefaultController extends AbstractController
      *
      * @Route("/", name="app_homepage")
      */
-    public function indexAction()
+    public function indexAction(ProductService $productService)
     {
-        return $this->render('default/index.html.twig');
+        $params['page'] = 1;
+        $params['limit'] = 30;
+        $products = $productService->getProducts($params);
+        return $this->render('default/index.html.twig',['products'=>$products]);
     }
 }
